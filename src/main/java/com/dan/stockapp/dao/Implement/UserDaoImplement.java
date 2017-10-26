@@ -43,7 +43,8 @@ public class UserDaoImplement implements UserDao {
             return userPersistence;
         }
 
-        @Override
+
+    @Override
         public UserPersistence updateUser(int userId, String userName) {
             // TODO Auto-generated method stub
             UserPersistence userPersistence = entityManager.find(UserPersistence.class, userId);

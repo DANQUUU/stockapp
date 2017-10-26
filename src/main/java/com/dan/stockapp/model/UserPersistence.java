@@ -15,8 +15,8 @@ public class UserPersistence {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USERID")
-
     private int userId;
+
     @Column(name = "USERNAME")
     private  String userName;
 
@@ -47,11 +47,8 @@ public class UserPersistence {
     private  String password;
 
     @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "USER_STOCK",
-            joinColumns = { @JoinColumn(name = "USERID") },
-            inverseJoinColumns = { @JoinColumn(name = "STOCKID") }
-    )
+    @JoinTable(name = "UESER_STOCK", joinColumns = @JoinColumn(name = "USERID", referencedColumnName = "USERID"),
+            inverseJoinColumns = @JoinColumn(name = "STOCKID", referencedColumnName = "STOCKID"))
     private Set<StockPersistence> stocks = new HashSet<StockPersistence>();
 
     public Set<StockPersistence> getStocks() {

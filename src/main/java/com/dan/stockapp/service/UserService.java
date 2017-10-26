@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Service
 public class UserService {
-
+    @Autowired
     UserRepository userRepository;
     @Autowired
     UserDao userDao;
@@ -38,14 +38,6 @@ public class UserService {
         return userDao.insertUser(userObj);
     }
 
-//    public Stock createStock(Stock stock) {
-//        return stock;
-//    }
-//    public StockPersistence createStock(StockPersistence stockObj) {
-//
-//        return stockDao.insertStock(stockObj);
-//    }
-
 
     public UserPersistence findByUserId(int userId) {
         log.info("Fetching data for{}", userId);
@@ -58,12 +50,16 @@ public class UserService {
         return (List<UserPersistence>) userRepository.findAll();
     }
 
-    public List<UserPersistence> getUserByUserName(String userName) {
-        return userRepository.findByUserName(userName);
-
+    public UserPersistence save(UserPersistence userPersistence) {
+        return userRepository.save(userPersistence);
     }
+
 
     public UserPersistence updateUser(int userId, String userName) {
         return userDao.updateUser(userId, userName);
+    }
+
+    public List<UserPersistence> getUserByUserName(String userName) {
+        return userDao.getUserByUserName(userName);
     }
 }
