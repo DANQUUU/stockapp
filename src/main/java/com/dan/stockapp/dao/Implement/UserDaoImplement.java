@@ -1,6 +1,7 @@
 package com.dan.stockapp.dao.Implement;
 
 import com.dan.stockapp.dao.UserDao;
+import com.dan.stockapp.model.StockPersistence;
 import com.dan.stockapp.model.User;
 import com.dan.stockapp.model.UserPersistence;
 import org.slf4j.Logger;
@@ -45,10 +46,10 @@ public class UserDaoImplement implements UserDao {
 
 
     @Override
-        public UserPersistence updateUser(int userId, String userName) {
+        public UserPersistence updateUser(int userId, StockPersistence stockPersistence) {
             // TODO Auto-generated method stub
             UserPersistence userPersistence = entityManager.find(UserPersistence.class, userId);
-            //person.setName(name);
+            userPersistence.getStocks().add(stockPersistence);
             entityManager.persist(userPersistence);
             return userPersistence;
         }
@@ -74,7 +75,7 @@ public class UserDaoImplement implements UserDao {
         @Override
         public List<UserPersistence> getUserByUserName(String userName) {
             // TODO Auto-generated method stub
-            Query q = entityManager.createNamedQuery("fetchByUserName", UserPersistence.class).setParameter(1, "dandan");
+            Query q = entityManager.createNamedQuery("fetchByUserName", UserPersistence.class).setParameter(1, userName);
             List<UserPersistence> result = q.getResultList();
             return result;
         }

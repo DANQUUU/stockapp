@@ -55,11 +55,13 @@ public class UserService {
     }
 
 
-    public UserPersistence updateUser(int userId, String userName) {
-        return userDao.updateUser(userId, userName);
+    public UserPersistence updateUser(int userId, StockPersistence stockPersistence) {
+        return userDao.updateUser(userId, stockPersistence);
     }
 
     public List<UserPersistence> getUserByUserName(String userName) {
         return userDao.getUserByUserName(userName);
     }
+
+//    public UserPersistence delete
 }

@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "STOCKPRICE")
-@NamedQuery(name="fetchByStockName", query="SELECT s FROM StockPersistence s where s.stockName=?")
+
 public class StockPersistence {
 
     @Id
@@ -40,12 +40,12 @@ public class StockPersistence {
 
 
     @Column(name="STOCKPRICE")
-    private Float stockPrice;
+    private Double stockPrice;
 
-    public Float getStockPrice() {
+    public Double getStockPrice() {
         return stockPrice;
     }
-    public void setStockPrice(Float stockPrice) {
+    public void setStockPrice(Double stockPrice) {
         this.stockPrice = stockPrice;
     }
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Stock</title>
+</head>
+<body>
+<form action="#" th:action="@{/user/addstock}" th:object="${userStockPersistence}" method="post">
+    <p>StockName: <input type="text" th:field="*{stockName}" /><input type="submit" value="Add"/></p>
+    <p><input type="hidden" th:field="*{userId}" /></p>
+    <p><input type="hidden" th:field="*{userName}" /></p>
+    <p><input type="hidden" th:field="*{password}" /></p>
+    <p><input type="hidden" th:field="*{stocks}" /></p>
+</form>
+
+<div>
+    <div th:if="${not #lists.isEmpty(userStockPersistence.stocks)}">
+        <h2>Stock List</h2>
+        <table>
+            <tr>
+                <th>Stock Id</th>
+                <th>Stock Name</th>
+                <th>Stock Price</th>
+            </tr>
+            <tr th:each="stock : ${userStockPersistence.stocks}">
+                <td th:text="${stock.stockId}"></td>
+                <td th:text="${stock.stockName}"></td>
+                <td th:text="${stock.stockPrice}"></td>
+                <td>
+                    <form th:action="@{/user/deletestock}" method="post">
+                        <input type="hidden" th:field="${stock.stockId}">Delete</input>
+                        <button type="submit" onClick="return confirm('sure?')"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

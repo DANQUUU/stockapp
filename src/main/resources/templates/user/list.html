@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>qusiba!!!!</h1>
+
+    <div>
+        <div th:if="${not #lists.isEmpty(userStockPersistence.stocks)}">
+            <h2>Stock List</h2>
+            <table>
+                <tr>
+                    <th>Stock Id</th>
+                    <th>Stock Name</th>
+                    <th>Stock Price</th>
+                </tr>
+                <tr th:each="stock : ${userStockPersistence.stocks}">
+                    <td th:text="${stock.stockId}"></td>
+                    <td th:text="${stock.stockName}"></td>
+                    <td th:text="${stock.stockPrice}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

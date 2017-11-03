@@ -14,5 +14,5 @@ public interface StockDao {
     public int deleteStock(int stockId);
     public StockPersistence fetchStockByStockId(int stockId);
     public List<StockPersistence> fetchAllStock();
-    public List<StockPersistence> getStockByStockName(String stockName);
+    public List<StockPersistence> getStockByUserId(int userId);
 }

@@ -38,7 +38,7 @@ public class StockDaoImplement implements StockDao{
         log.info("Insert data for{}",stockPersistence.getStockName());
         entityManager.persist(stockPersistence);
         entityManager.flush();
-        log.info("PersonId genarted:{}", stockPersistence.getStockId());
+        log.info("StockId genarted:{}", stockPersistence.getStockId());
         return stockPersistence;
     }
 
@@ -66,10 +66,8 @@ public class StockDaoImplement implements StockDao{
     }
 
     @Override
-    public List<StockPersistence> getStockByStockName(String stockName) {
-        // TODO Auto-generated method stub
-        Query q = entityManager.createNamedQuery("fetchByStockName", StockPersistence.class).setParameter(1, "apple");
-        List<StockPersistence> result = q.getResultList();
-        return result;
+    public List<StockPersistence> getStockByUserId(int userId) {
+
+        return null;
     }
 }

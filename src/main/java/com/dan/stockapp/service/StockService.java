@@ -11,7 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
+import javax.persistence.PreRemove;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,7 +24,7 @@ import java.util.List;
 
 @Service
 public class StockService {
-
+    @Autowired
     StockRepository stockRepository;
     @Autowired
     StockDao stockDao;
@@ -48,11 +52,20 @@ public class StockService {
         return (List<StockPersistence>) stockRepository.findAll();
     }
 
-    public List<StockPersistence> getStockByStockName(String stockName) {
-        return stockDao.getStockByStockName(stockName);
+    public List<StockPersistence> getStockByUserId(int userId) {
+        return stockDao.getStockByUserId(userId);
     }
 
     public StockPersistence updateStock(int stockId, String stockName) {
         return stockDao.updateStock(stockId, stockName);
+    }
+
+    public StockPersistence save(StockPersistence stockPersistence) {
+        return stockRepository.save(stockPersistence);
+    }
+
+    @PreRemove
+    public void deleteStock(StockPersistence stockPersistence) {
+        stockRepository.delete(stockPersistence);
     }
 }
