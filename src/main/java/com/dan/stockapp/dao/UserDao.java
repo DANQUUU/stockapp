@@ -14,5 +14,5 @@ public interface UserDao {
     public int deleteUser(int userId);
     public UserPersistence fetchUserByUserId(int userId);
     public List<UserPersistence> fetchAllUser();
-    public List<UserPersistence> getUserByUserName(String userName);
+    public UserPersistence getUserByUserName(String userName);
 }

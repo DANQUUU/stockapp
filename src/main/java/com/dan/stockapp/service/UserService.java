@@ -59,9 +59,13 @@ public class UserService {
         return userDao.updateUser(userId, stockPersistence);
     }
 
-    public List<UserPersistence> getUserByUserName(String userName) {
-        return userDao.getUserByUserName(userName);
+    public UserPersistence findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
+
+//    //public List<UserPersistence> getUserByUserName(String userName) {
+//        return userDao.getUserByUserName(userName);
+//    }
 
 //    public UserPersistence delete
 }

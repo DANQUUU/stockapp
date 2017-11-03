@@ -73,10 +73,9 @@ public class UserDaoImplement implements UserDao {
         }
 
         @Override
-        public List<UserPersistence> getUserByUserName(String userName) {
+        public UserPersistence getUserByUserName(String userName) {
             // TODO Auto-generated method stub
-            Query q = entityManager.createNamedQuery("fetchByUserName", UserPersistence.class).setParameter(1, userName);
-            List<UserPersistence> result = q.getResultList();
-            return result;
+
+            return null;
         }
 }

@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface UserRepository extends JpaRepository<UserPersistence, Integer>{
+    public UserPersistence findByUserName(String userName);
 }

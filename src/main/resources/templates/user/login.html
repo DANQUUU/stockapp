@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>StockApp</title>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -11,6 +12,7 @@
             th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
+
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -21,7 +23,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/user/login">Login</a></li>
                     <li><a href="/user/add">Sign Up</a></li>
-                    <li><a href="/">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -32,14 +33,29 @@
             <div class="container">
                 <h1>Welcome To MyStock!</h1>
                 <p>View your specific personal stock information very easily</p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="/new">Add new Stock</a>
-                </p>
             </div>
         </header>
 
     </div>
+    <div class="container">
 
+    <h1>Log In to Your Account</h1>
+        <form action="#" th:action="@{/user/addstock}" th:object="${userStockPersistence}" method="post">
+            <div class="form-group">
+                <label for="exampleInputEmail1">User Name</label>
+                <input type="email" th:field="*{userName}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username"/>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button><button type="submit" class="btn btn-primary">Reset</button>
+            </div>
 
+        </form>
+
+    </div>
 </body>
 </html>

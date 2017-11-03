@@ -1,45 +1,76 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>AddStock</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>StockApp</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"
+            th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
 
-<form action="#" th:action="@{/user/addstock}" th:object="${userStockPersistence}" method="post">
-    <p>StockName: <input type="text" th:field="*{stockName}" /><input type="submit" value="Add"/></p>
-    <p><input type="hidden" th:field="*{userId}" /></p>
-    <p><input type="hidden" th:field="*{userName}" /></p>
-    <p><input type="hidden" th:field="*{password}" /></p>
-    <p><input type="hidden" th:field="*{stocks}" /></p>
-</form>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">MyStock</a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/user/login">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+<h1>User Page</h1>
+    <form action="#" th:action="@{/user/addstock}" th:object="${userStockPersistence}" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Enter Stock Name</label>
+            <input type="text" th:field="*{stockName}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+        <p><input type="hidden" th:field="*{userId}" /></p>
+        <p><input type="hidden" th:field="*{userName}" /></p>
+        <p><input type="hidden" th:field="*{password}" /></p>
+        <p><input type="hidden" th:field="*{stocks}" /></p>
+    </form>
 
 <div>
     <div th:if="${not #lists.isEmpty(userStockPersistence.stocks)}">
         <h2>Stock List</h2>
-        <table>
+
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
-                <th>Stock Id</th>
-                <th>Stock Name</th>
-                <th>Stock Price</th>
+                <th scope="col">Stock ID</th>
+                <th scope="col">Stock Name</th>
+                <th scope="col">Stock Price</th>
             </tr>
+            </thead>
+            <tbody>
             <tr th:each="stock : ${userStockPersistence.stocks}">
                 <td th:text="${stock.stockId}"></td>
                 <td th:text="${stock.stockName}"></td>
                 <td th:text="${stock.stockPrice}"></td>
                 <td>
-                    <form th:action="@{/user/deletestock}" th:object="${userStockPersistence}" method="post">
-                        <input type="hidden" th:field="*{deleteStockId}"/>
-                        <button type="submit" onClick="return confirm('sure?')">Delete</button>
-                        <p><input type="hidden" th:field="*{userId}" /></p>
-                        <p><input type="hidden" th:field="*{userName}" /></p>
-                        <p><input type="hidden" th:field="*{password}" /></p>
-                        <p><input type="hidden" th:field="*{stocks}" /></p>
+                    <!--<input type="hidden" th:field="*{deleteStockId}"/>-->
+                    <!--<button type="submit" onClick="return confirm('sure?')">Delete</button>-->
+                    <form method="POST" th:action="@{/user/deletestock(deleteStockId=${stock.stockId})}">
+                        <button type="submit"  class="btn btn-primary" onClick="return confirm('sure?')">Delete</button>
                     </form>
                 </td>
             </tr>
+            </tbody>
         </table>
+
+
     </div>
+</div>
 </div>
 </body>
 </html>
